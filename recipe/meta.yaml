@@ -1,5 +1,4 @@
-{% set version = "1.9-1" %}
-
+{% set version = '1.9-1' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -8,40 +7,45 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: polyclip_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/polyclip_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/polyclip/polyclip_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/polyclip_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/polyclip/polyclip_{{ version }}.tar.gz
   sha256: c5d578bf1b34fdc44c909a2cbd1e33ed842f09dd045005885669683b94fcb164
 
 build:
   merge_build_host: True  # [win]
-  number: 1
-  script: R CMD INSTALL --build .
-  skip: True  # [win32]
+  number: 2
+  skip: true  # [win32]
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('fortran') }}        # [unix]
-    - {{ compiler('m2w64_fortran') }}  # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('cxx') }}        # [unix]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}sed               # [win]
+    - {{posix}}grep              # [win]
+    - {{posix}}autoconf
+    - {{posix}}automake          # [not win]
+    - {{posix}}automake-wrapper  # [win]
+    - {{posix}}pkg-config
+    - {{posix}}make
+    - {{posix}}sed  # [win]
+    - {{posix}}coreutils  # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
-
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
 
 test:
   commands:
-    # You can put additional test commands to be run here.
-    - $R -e "library('polyclip')"  # [not win]
+    - $R -e "library('polyclip')"           # [not win]
     - "\"%R%\" -e \"library('polyclip')\""  # [win]
     - conda inspect linkages -p $PREFIX r-polyclip  # [not win]
     - conda inspect objects -p $PREFIX r-polyclip  # [osx]
@@ -61,3 +65,9 @@ about:
 extra:
   recipe-maintainers:
     - jsignell
+    - johanneskoester
+    - bgruening
+    - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
