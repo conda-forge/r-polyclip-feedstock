@@ -61,6 +61,7 @@ about:
     Minkowski Sum of general polygons. There is a function for removing self-intersections
     from polygon data.
   license_family: OTHER
+  license_file: LICENSE_1_0.txt
 
 extra:
   recipe-maintainers:
