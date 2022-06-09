@@ -3,7 +3,7 @@ About r-polyclip
 
 Home: http://www.angusj.com/delphi/clipper.php, https://sourceforge.net/projects/polyclipping, https://github.com/baddstats/polyclip
 
-Package license: BSL
+Package license: BSL-1.0
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-polyclip-feedstock/blob/main/LICENSE.txt)
 
