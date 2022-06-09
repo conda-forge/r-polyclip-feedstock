@@ -21,6 +21,7 @@ build:
 
 requirements:
   build:
+    - cross-r-base {{ r_base }}  # [build_platform != target_platform]
     - {{ compiler('c') }}              # [not win]
     - {{ compiler('m2w64_c') }}        # [win]
     - {{ compiler('cxx') }}            # [not win]
@@ -49,7 +50,7 @@ test:
 about:
   home: http://www.angusj.com/delphi/clipper.php, https://sourceforge.net/projects/polyclipping,
     https://github.com/baddstats/polyclip
-  license: BSL
+  license: BSL-1.0
   summary: R port of Angus Johnson's open source library Clipper. Performs polygon clipping operations
     (intersection, union, set minus, set difference) for polygonal regions of arbitrary
     complexity, including holes. Computes offset polygons (spatial buffer zones, morphological
