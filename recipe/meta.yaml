@@ -1,4 +1,4 @@
-{% set version = '1.10-0' %}
+{% set version = "1.10-4" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/polyclip_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/polyclip/polyclip_{{ version }}.tar.gz
-  sha256: 74dabc0dfe5a527114f0bb8f3d22f5d1ae694e6ea9345912909bae885525d34b
+  sha256: 84d2c9778771d3759b49d7d16fb54c8ddc5397da3b1d21074bc4aa42c02e6f56
 
 build:
-  merge_build_host: True  # [win]
-  number: 3
+  merge_build_host: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -48,15 +48,10 @@ test:
     - "\"%R%\" -e \"library('polyclip')\""  # [win]
 
 about:
-  home: http://www.angusj.com/delphi/clipper.php, https://sourceforge.net/projects/polyclipping,
-    https://github.com/baddstats/polyclip
+  home: http://www.angusj.com/delphi/clipper.php, https://sourceforge.net/projects/polyclipping, https://github.com/baddstats/polyclip
   license: BSL-1.0
-  summary: R port of Angus Johnson's open source library Clipper. Performs polygon clipping operations
-    (intersection, union, set minus, set difference) for polygonal regions of arbitrary
-    complexity, including holes. Computes offset polygons (spatial buffer zones, morphological
-    dilations, Minkowski dilations) for polygonal regions and polygonal lines. Computes
-    Minkowski Sum of general polygons. There is a function for removing self-intersections
-    from polygon data.
+  summary: R port of Angus Johnson's open source library Clipper. Performs polygon clipping operations (intersection, union, set minus, set difference) for polygonal regions of arbitrary complexity, including holes. Computes offset polygons (spatial buffer zones, morphological dilations, Minkowski dilations) for polygonal
+    regions and polygonal lines. Computes Minkowski Sum of general polygons. There is a function for removing self-intersections from polygon data.
   license_family: OTHER
   license_file: LICENSE_1_0.txt
 
