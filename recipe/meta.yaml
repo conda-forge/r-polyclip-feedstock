@@ -1,4 +1,4 @@
-{% set version = "1.10-4" %}
+{% set version = "1.10-6" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,11 +10,11 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/polyclip_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/polyclip/polyclip_{{ version }}.tar.gz
-  sha256: 84d2c9778771d3759b49d7d16fb54c8ddc5397da3b1d21074bc4aa42c02e6f56
+  sha256: 3c2f13edabdd9cd2612a60afec9ba447b3dd5a4109dd066d7870411d032f8b63
 
 build:
   merge_build_host: true  # [win]
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
